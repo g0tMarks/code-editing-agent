@@ -26,3 +26,15 @@ func main() {
 		fmt.Printf("Error: %s\n", err.Error())
 	}
 }
+
+func NewAgent(client *anthropic.Client, getUserMessage func() (string, bool)) *Agent {
+	return &Agent{
+		client:         client,
+		getUserMessage: getUserMessage,
+	}
+}
+
+type Agent struct {
+	client         *anthropic.Client
+	getUserMessage func() (string, bool)
+}
